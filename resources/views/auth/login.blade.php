@@ -8,6 +8,8 @@
                 <div class="panel-heading">Login</div>
 
                 <div class="panel-body">
+
+<!--
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
@@ -54,12 +56,14 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Login
-                                </button>
-
+                                </button>-->
+                                <center>
                                       <a href="{{ url('auth/linkedin') }}" class="btn btn-primary">
-                                          <strong>Login With Linkedin</strong>
+                                          <strong>Access our Beta by logging in via Linkedin</strong>
                                       </a>
+                                    </center>
 
+<!--
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Forgot Your Password?
                                 </a>
@@ -69,6 +73,16 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
 @endsection
+
+<style>
+.instructions {
+  width: 100%;
+  background-color: #E6F6FF;
+  color: black;
+  padding: 20px;
+  border-radius: 20px;
+}
+</style>

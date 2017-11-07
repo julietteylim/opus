@@ -11,9 +11,9 @@
           <h4 class="modal-title">Invite a friend to apply for this rotation</h4>
         </div>
           <div class="modal-body">
-            
-            Know of someone who would love this rotation?
-            <br> Enter their email below, and we'll send them an invite on your behalf.
+
+            <b> Know of someone who would love this rotation? </b>
+            <br> Enter their email below, and we'll send them an invite on your behalf. If they successfully partake in a rotation, we'll send you $200 as a thank you!
             <br>
             <br>
             <input type="hidden">

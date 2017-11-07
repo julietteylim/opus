@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Socialite;
 use Auth;
+use Cookie;
 
 use App\Postings;
 use App\Profiles;
@@ -45,12 +46,14 @@ class LinkedinController extends Controller
 
         Auth::login($findUser);
 
-        
+
         return redirect ('postings');
 
 
 
       } else {
+
+        $referred_by = Cookie::get('referral');
 
         $user = new User;
 
@@ -65,6 +68,10 @@ class LinkedinController extends Controller
         $user->linkedin_headline = $linkedinuser->user['headline'];
 
         $user->linkedin_url = $linkedinuser->user['publicProfileUrl'];
+
+        $user->referral_code = str_random(12);
+
+        $user->referred_by = $referred_by;
 
         $user->save();
 

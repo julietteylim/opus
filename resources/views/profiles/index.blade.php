@@ -16,8 +16,9 @@
                   <div class="row" style="padding-left:50px; margin-bottom: 50px;">
                     <br><button class="btn btn-default" style="float:right; margin-right: 50px;"> <a href="{{ url('/profiles/create ')}}"> Update profile </a></button>
                   <img src="{{ $user->avatar }}" style="width:150px; height:150px; float:left; margin-right: 25px; border-radius: 50%;">
-                    <h2> {{ $user->name }}'s Profile </h2>
+                    <h2 class="usernamefield"> {{ $user->name }} </h2>
                     <h4> {{ $user->email }} </h4>
+
 
 
 
@@ -32,7 +33,7 @@
                     @foreach ($profiles as $profile)
                       @if ($profile->user_id === $user->id)
 
-                      <h4> General </h4>
+                      <h4 class="profileheader"><b> General </b></h4>
                       <div class="row">
                         <div class="col-sm-3"><b>About me: </b></div><div class="col-sm-9">{{$profile->aboutme}}</div>
                       </div><br>
@@ -41,7 +42,7 @@
                       </div>
 
                       <hr>
-                      <h4> Background </h4>
+                      <h4 class="profileheader"><b> Background </b></h4>
                       <div class="row">
                         <div class="col-sm-3"><b>Education: </b></div><div class="col-sm-9">{{$profile->education}}</div>
                       </div><br>
@@ -50,7 +51,7 @@
                       </div>
 
                       <hr>
-                      <h4> Preferences </h4>
+                      <h4 class="profileheader"><b> Preferences </b></h4>
                       <div class="row">
                         <div class="col-sm-3"><b>Location pref: </b></div><div class="col-sm-9">{{$profile->location}}</div>
                       </div><br>
@@ -63,6 +64,11 @@
                       <div class="row">
                         <div class="col-sm-3"><b>Timing pref: </b></div><div class="col-sm-9">{{$profile->timing}}</div>
                       </div>
+
+                      <hr>
+                      <h4 class="profileheader"><b> Referral code </b></h4>
+                      <br>
+                      <input type="text" style="width: 400px" readonly="readonly" value="{{url('/').'/?ref='.Auth::user()->referral_code}}">
 
                       @endif
                     @endforeach
@@ -83,3 +89,17 @@
     </div>
 </div>
 @endsection
+
+<style>
+.profileheader {
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #004AAE;
+}
+
+.usernamefield {
+  text-transform: uppercase;
+
+}
+</style>

@@ -15,7 +15,10 @@
 
                 <div class="panel-body">
 
-                  <div class="row">
+                  <div class="row"><div class="col-sm-1"></div>
+
+                  <div class="col-sm-10">
+                  <div class="row"><br>
                         <div class="col-sm-2">
                           <div class="companycontainer">
                             <br><center>
@@ -24,29 +27,34 @@
                           </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 headerspace">
                       <h2> {{ $postings->company_name }} </h2>
                       <p> {{ $postings->company_size }} | {{ $postings->location }} </p>
 
                     </div>
 
-                      <div class="col-sm-4"><br><br>
+                      <div class="col-sm-3"><br>
 
                         <form class="form-inline" action="interested" method="post"><div class="form group">
                           {{ csrf_field() }}
                         <input type="hidden" name="posting_id" value="{{$postings->id}}">
-                        <button type="submit" data-id="{{ $postings->id}}" class="opusbtn btn btn-outline">Interested</button>
 
-                        <button type="button" data-id="{{ $postings->id }}" class="opusbtn btn btn-outline" data-toggle="modal" href="postings/sendfriend" data-target="#sendfriend">Send to a friend</button>
+                        <button type="submit" data-id="{{ $postings->id}}" class="opusbtn btn btn-outline" style="margin-bottom: 10px;">Interested</button>
+
+                        <button type="button" data-id="{{ $postings->id }}" class="opusbtn btn btn-outline" data-toggle="modal" href="postings/sendfriend" data-target="#sendfriend">Share with a friend for $200</button>
+
                       </div></form>
-
+                    </div>
                       </div>
                 </div>
+              </div>
+              </div>
 
-                <br><hr><div class="row">
-                  <div class="col-sm-2">
-                    <b><div style="margin-top:12px;"> Why Opus likes this rotation </div></b></div>
+                <hr><div class="row">
+                  <div class="col-sm-1"></div>
                   <div class="col-sm-10">
+                    <b><span class="desc"> Why Opus likes this rotation </span></b>
+
 
                     <p><li> {{ $postings->reason1 }} </p>
                       <p><li> {{ $postings->reason2 }} </p>
@@ -55,60 +63,66 @@
                 </div><hr>
 
                 <div class="row">
-                  <div class="col-sm-2">
-                    <br><b> Description: </b></div>
+                  <div class="col-sm-1"></div>
+
                   <div class="col-sm-10">
+                    <div class="row">
+                        <div class="col-sm-4">
+                        <br><b><span class="desc"> Role </span></b>
+                        <br>
+                        <p> {{ $postings->role }} </p>
+                        </div>
+
+                        <div class="col-sm-4">
+                        <br><b><span class="desc"> Duration </span></b>
+                        <br>
+                        <p> {{ $postings->duration }} </p>
+                        </div>
+
+                        <div class="col-sm-4">
+                        <br><b><span class="desc"> Start date </span></b>
+                        <br>
+                        <p> {{ $postings->start_date }} </p>
+                        </div>
+
+                  </div>
+                </div>
+              </div>
+
+                <div class="row">
+                  <div class="col-sm-1"></div>
+                  <div class="col-sm-10">
+                    <br><b><span class="desc"> Description </span></b>
                     <br>
                     <p> {{ $postings->company_desc }} </p>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="col-sm-2">
-                    <br><b> Role: </b></div>
+                  <div class="col-sm-1"></div>
                   <div class="col-sm-10">
-                    <br>
-                    <p> {{ $postings->role }} </p>
-                  </div>
-                </div>
-
-
-                <div class="row">
-                  <div class="col-sm-2">
-                    <br><b> Role Description: </b></div>
-                  <div class="col-sm-10">
+                    <br><b><span class="desc"> Role description </span></b>
                     <br>
                     <p> {{ $postings->role_desc }} </p>
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="col-sm-2">
-                    <br><b> Preferred Start Date: </b></div>
-                  <div class="col-sm-10">
-                    <br>
-                    <p> {{ $postings->start_date }} </p>
-                  </div>
-                </div>
+
 
                 <div class="row">
-                  <div class="col-sm-2">
-                    <br><b> Length of Rotation: </b></div>
+                  <div class="col-sm-1"></div>
                   <div class="col-sm-10">
+                    <br><b><span class="desc"> Preferred candidate background </span></b>
                     <br>
-                    <p> {{ $postings->duration }} </p>
+                    <p> {{ $postings->candidate_bg }} </p>
                   </div>
                 </div>
-
-
-
-
 
               <br><br><div class="row">
-                <div class="col-sm-1 col-sm-offset-11">
+                <div class="col-sm-1 col-sm-offset-10">
                 <a href="{{ url('/postings') }}"> Back </a>
               </div>
-            </div>
+            </div><br><br>
 
             </div>
 
@@ -150,8 +164,19 @@
   background-color: #004AAE;
   color: #FFF;
   font-family: Lato;
-  border-radius: 10px;"
+  border-radius: 10px;
 }
+
+
+.desc {
+  color: #004AAE;
+  text-transform: uppercase;
+}
+
+.headerspace {
+  margin-left: 20px;
+}
+
 
 
 </style>

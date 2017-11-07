@@ -56,6 +56,16 @@
               </div><br>
 
               <div class="form-group">
+                <label class="control-label col-sm-2" for="curr_role">Current role*:</label>
+                <div class="col-sm-10">
+                <div class="checkbox checkbox-success">
+                    <label class="checkbox-inline" for="consultant"><input type="checkbox" name="curr_role[]" value="Consultant" @if ($profile) @if (in_array("Consultant", $currrolearray)) checked=checked @endif @endif>Consultant</label>
+                    <label class="checkbox-inline" for="banker"><input type="checkbox" name="curr_role[]" value="Banker" @if ($profile) @if (in_array("Banker", $currrolearray)) checked=checked @endif @endif>Banker</label>
+                  </div>
+                </div>
+              </div><br>
+
+              <div class="form-group">
                 <label class="control-label col-sm-2" for="education">Education*:</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" name="education" id="education" placeholder="Stanford University; Economics; Graduated 2015" value="@if ($profile) {{$profile->education}} @endif" required>
@@ -132,8 +142,12 @@
                 </div>
               </div><br>
 
-
               <button type="submit" name="save" class="btn pull-right btn-outline">Save profile data</button>
+
+
+              <i>By clicking submit, I acknowledge I have read and acknowledged the
+                <button type="button" class="privacypolicy" data-toggle="modal" href="profiles/privacypolicy" data-target="#privacypolicy"><b>Privacy Policy</b></button>
+                </i>
 
             </form>
 
@@ -146,4 +160,17 @@
         </div>
     </div>
 </div>
+
+@include('profiles.privacypolicy')
+
 @endsection
+
+<style>
+.privacypolicy {
+  border: none;
+  display: inline-block;
+  background-color: #fff;
+  margin: none;
+  padding: none;
+}
+</style>

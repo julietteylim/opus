@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use Auth;
 use Image;
+use Storage;
+use Response;
 
 use App\Profiles;
 use App\Users;
@@ -39,7 +41,8 @@ class ProfileController extends Controller
           $locationarray = explode(",",$profile->location);
           $industryarray = explode(",",$profile->industry);
           $timingarray = explode(",",$profile->timing);
-          return view('profiles.create', compact('user','profile', 'rolearray', 'locationarray', 'industryarray', 'timingarray'));
+          $currrolearray = explode(",",$profile->curr_role);
+          return view('profiles.create', compact('user','profile', 'rolearray', 'locationarray', 'industryarray', 'timingarray','currrolearray'));
         } else {
 
           return view('profiles.create', compact('user','profile'));
@@ -75,6 +78,7 @@ class ProfileController extends Controller
           $profile->linkedin = $user->linkedin_url;
           $profile->phone = $request->input('phone');
           $profile->work = $request->input('work');
+          $profile->curr_role = implode(",", $request->get('curr_role'));
           $profile->education = $request->input('education');
           $profile->location = implode(",", $request->get('location'));
           $profile->industry = implode(",", $request->get('industry'));
@@ -95,6 +99,7 @@ class ProfileController extends Controller
           $profile->linkedin = $user->linkedin_url;
           $profile->phone = $request->input('phone');
           $profile->work = $request->input('work');
+          $profile->curr_role = implode(",", $request->get('curr_role'));
           $profile->education = $request->input('education');
           $profile->location = implode(",", $request->get('location'));
           $profile->industry = implode(",", $request->get('industry'));
@@ -150,6 +155,34 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function resumeupload (request $request) {
+      if ($request->hasFile('resume')) {
+        // $request->resume->extension();
+
+        // Get the resume that was uploaded
+        $resume = $request->file('resume');
+
+        // Store the resume in public folder with randomized name
+        $path = Storage::putFile('public/resumes', $resume);
+
+        // Find the current users profile
+        $user = Auth::user();
+        $profile = Profiles::where('user_id', '=', $user->id)->first();
+
+        // Save the resume filename to the profile database
+        $profile->resume = $path;
+        $profile->save();
+
+        return redirect()->back();
+
+]);
+
+      }
+      else {
+        return "No resume selected";
+      }
     }
 
 

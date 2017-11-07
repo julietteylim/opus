@@ -11,9 +11,12 @@
 |
 */
 
+use App\Http\Middleware\CheckReferral;
+
 Route::get('/', function () {
   return view('welcome');
-});
+})->middleware(CheckReferral::class);
+
 
 Auth::routes();
 
@@ -50,9 +53,13 @@ Route::get('/home', 'PostingController@index');
 // Routes regarding profile information
 Route::get('/profiles', 'UserController@index');
 
+Route::post('/profiles/privacypolicy', 'UserController@privacypolicy');
+
 Route::get('/profiles/create', 'ProfileController@create');
 
 Route::post('/profiles', 'ProfileController@store');
 
 // Passes through this page when avatar is posted
 Route::post('avatar', 'UserController@update_avatar');
+
+Route::post('resumeupload', 'ProfileController@resumeupload');

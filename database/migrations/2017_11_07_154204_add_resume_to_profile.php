@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddReasonsToPostings extends Migration
+class AddResumeToProfile extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,10 @@ class AddReasonsToPostings extends Migration
     public function up()
     {
         //
-        Schema::table('postings', function($table) {
-        $table->string('reason1')->nullable()->after('short_desc');
-        $table->string('reason2')->nullable();
-        $table->string('reason3')->nullable();
-        });
+        Schema::table('profiles', function($table) {
+        $table->string('resume')->after('timing')->nullable();
+        }
+      );
     }
 
     /**
@@ -29,5 +28,8 @@ class AddReasonsToPostings extends Migration
     public function down()
     {
         //
+        Schema::table('profiles', function($table) {
+        $table->dropColumn('resume');
+          });
     }
 }

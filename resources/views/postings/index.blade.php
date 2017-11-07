@@ -19,12 +19,32 @@
         </div>
 
         @if ($profile)
+        <div class="panel-body panel panel-default">
+          <div class="row">
+
+        <div class="col-sm-10">
+        <button type="button" class="resumeupload" data-toggle="modal" href="profiles/resumeupload" data-target="#resumeupload"><b>Resume uploaded?</b></button>
+        </div>
+
+          <div class="col-sm-2">
+            @if ($profile->resume)
+            <i class="fa fa-check-circle" style="margin-top:7px; color: green;" aria-hidden="true"></i>
+            @else
+          <i class="fa fa-check-circle" style="opacity:0.2; margin-top:7px;" aria-hidden="true"></i>
+            @endif
+        </div>
+        </div>
+
+
+        </div>
+
         <div class="interestedpanel panel panel-default">
           <div class="panel-heading">
-           My saved rotations
+           <b>Rotations I am interested in</b>
         </div>
 
         <div class="panel-body">
+
           @foreach ($myinterests as $myinterest)
           <div class="row">
 
@@ -66,6 +86,11 @@
 
                 <div class="panel-body">
 
+                  <div class="instructions">
+                    Hey there! See a position you might be interested in? Click 'interested', and a member of our team will be in touch shortly to help you out. Feel free to select as many as you would like - there's no obligation to do anything!
+                  </div>
+                  <br>
+
                   @if ($profile)
 
                   @if (session('status'))
@@ -99,20 +124,18 @@
                       <form class="form-inline" action="interested" method="post"><div class="form group">
                         {{ csrf_field() }}
                       <input type="hidden" name="posting_id" value="{{$posting->id}}">
-                      <button type="submit" data-id="{{ $posting->id}}" class="opusbtn btn btn-outline">Interested</button>
+                      <button type="submit" data-id="{{ $posting->id }}" class="opusbtn btn btn-outline">Interested</button>
 
-                      <button type="button" data-id="{{ $posting->id }}" class="opusbtn btn btn-outline" data-toggle="modal" href="postings/sendfriend" data-target="#sendfriend">Send to a friend</button>
+                      <button type="button" data-id="{{ $posting->id }}" class="opusbtn btn btn-outline" data-toggle="modal" href="postings/sendfriend" data-target="#sendfriend">Share with a friend for $200</button>
                     </div></form>
 
 
                     </div>
                   </div>
-                  <div class="row">
+
                     <div class="col-sm-12"><hr></div>
-                  </div>
 
 
-                
 
                 @endforeach
 
@@ -124,6 +147,7 @@
                 @endif
 
 @include('postings.sendfriend')
+@include('profiles.resumeupload')
 
               </div>
 
@@ -201,5 +225,22 @@
   background:none;
   cursor:pointer;
 }
+
+.instructions {
+  width: 100%;
+  background-color: #E6F6FF;
+  color: black;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.resumeupload {
+  border: none;
+  display: inline-block;
+  background-color: #fff;
+  margin: none;
+  padding: none;
+}
+
 
 </style>
